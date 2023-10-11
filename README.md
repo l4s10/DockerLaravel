@@ -25,11 +25,11 @@ Este repositorio surgió originalmente como una tarea, sin embargo, su estructur
 
 3. Accede a la aplicación en tu navegador usando http://localhost (o cualquier otro puerto que hayas especificado).
 
-🤝 Contribuciones
+## 🤝 Contribuciones
 
 Las contribuciones son bienvenidas. Por favor, abre un Issue primero para discutir lo que te gustaría cambiar. Asegúrate de actualizar las pruebas según corresponda.
 
-📜 Licencia
+## 📜 Licencia
 
 MIT
   
