@@ -18,7 +18,7 @@ Este repositorio surgió originalmente como una tarea, sin embargo, su estructur
    git clone [URL_DEL_REPOSITORIO]
    cd [NOMBRE_DEL_DIRECTORIO]
    
-2. **Construir y levantar los contenedores
+2. **Construir y levantar los contenedores**
    
    ```bash
    docker-compose up --build -d
