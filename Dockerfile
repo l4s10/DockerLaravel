@@ -1,26 +1,55 @@
-FROM php:8.2-apache
+# Basado en Debian 12
+FROM debian:12
 
-# Instalar extensiones requeridas por Laravel y habilitar mod_rewrite para Apache
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip git unzip && \
-    docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install gd pdo pdo_mysql && \
-    a2enmod rewrite
+# Instalar las dependencias y herramientas necesarias
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    libapache2-mod-php8.2 \
+    php8.2 \
+    php8.2-cli \
+    php8.2-fpm \
+    php8.2-common \
+    php8.2-mysql \
+    php8.2-zip \
+    php8.2-gd \
+    php8.2-mbstring \
+    php8.2-curl \
+    php8.2-xml \
+    php8.2-bcmath \
+    curl \
+    zip \
+    unzip \
+    git \
+    mariadb-client \
+    && apt-get clean
 
-# Instalar Composer globalmente
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Habilitar mod_rewrite para Laravel
+RUN a2enmod rewrite
 
-# Copia la configuración personalizada de Apache
+RUN mkdir /var/www/laravel_app
+# Configurar el directorio de trabajo
+WORKDIR /var/www/laravel_app
+
+# Copiar un archivo de configuración de Apache virtualhost para configurar Laravel
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# Configurar el directorio de trabajo
-WORKDIR /var/www/html
+# Instalar Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Si el proyecto Laravel no existe, lo crea
-RUN if [ ! -d "/var/www/html/vendor" ]; then composer create-project --prefer-dist laravel/laravel .; fi
+# Permitir ejecutar Composer como superusuario y crear el proyecto Laravel
+# Usualmente no es recomenado hacer este paso pero si estamos en un entorno de producción controlado si se puede hacer
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+# Verificar si Laravel ya está instalado (comprobando la existencia del archivo artisan). Si no lo está, instalar Laravel.
+RUN if [ ! -f /var/www/laravel_app/artisan ]; then composer create-project laravel/laravel . "10.*"; fi
 
 # Establece los permisos adecuados
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
+RUN chmod -R 775 /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
 
-
+# Exponer el puerto 80 para el servicio web
 EXPOSE 80
+
+# Iniciar Apache en primer plano al iniciar el contenedor.
+# Mantener Apache en primer plano es esencial para que el contenedor continúe ejecutándose.
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
