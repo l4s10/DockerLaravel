@@ -15,7 +15,8 @@ El proyecto ocupa el siguiente entorno de desarrollo
 
 4. **.env**: Es un archivo de configuración con las mismas credenciales de docker-compose.yml, debido a que el proyecto que se va a levantar también necesita un archivo de configuración .env para poder levantar la aplicacion correctamente.
 
-5. **respaldo.sql**
+5. **respaldo.sql**: Archivo.sql el cual contendrá todos los datos necesarios para inicializar un ambiente de pruebas del proyecto para revisión.
+
 ## 🚀 Pasos a seguir
 
 1. **Clonar el repositorio**
@@ -30,6 +31,16 @@ El proyecto ocupa el siguiente entorno de desarrollo
    docker-compose up --build -d
 
 3. Accede a la aplicación en tu navegador usando http://localhost:PUERTO (o cualquier otro puerto que hayas especificado).
+
+4. **Cuentas**
+   Para realizar pruebas del sistema, este cuenta con usuarios demo para poder visualizar los diferentes módulos del sistema.
+   ```bash
+   administrador@sia.cl -> 12345678
+   servicios@sia.cl     -> 12345678
+   informatica@sia.cl   -> 12345678
+   juridico@sia.cl      -> 12345678
+   funcionario@sia.cl   -> 12345678
+   funcionario2@sia.cl  -> 12345678
 
 ## 📜 Licencia
 
