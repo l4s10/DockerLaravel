@@ -11,9 +11,11 @@ El proyecto ocupa el siguiente entorno de desarrollo
 
 2. **docker-compose.yml**: Este archivo define cómo se ejecutará nuestra aplicación. Puedes configurar servicios, redes y volúmenes.
 
-3. **000-default.conf**: Es un archivo de configuración para Apache. Personaliza la configuración por defecto del servidor Apache dentro del contenedor, asegurando que se sirva nuestra aplicación Laravel correctamente y se gestionen las URLs amigables que proporciona Laravel.
+3. **laravel.conf**: Es un archivo de configuración para Apache. Personaliza la configuración por defecto del servidor Apache dentro del contenedor, asegurando que se sirva nuestra aplicación Laravel correctamente y se gestionen las URLs amigables que proporciona Laravel.
 
+4. **.env**: Es un archivo de configuración con las mismas credenciales de docker-compose.yml, debido a que el proyecto que se va a levantar también necesita un archivo de configuración .env para poder levantar la aplicacion correctamente.
 
+5. **respaldo.sql**
 ## 🚀 Pasos a seguir
 
 1. **Clonar el repositorio**
