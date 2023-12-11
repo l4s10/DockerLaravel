@@ -25,8 +25,14 @@ El proyecto ocupa el siguiente entorno de desarrollo
    git clone [URL_DEL_REPOSITORIO]
    cd [NOMBRE_DEL_DIRECTORIO]
 
-2. **Construir y levantar los contenedores**
+2. **Renombrar archivo .env.example**
+   El repositorio contiene un archivo de configuración llamado .env.example, este al momento de la ejecución del docker debe poseer las mismas conexiones y credenciales que el docker-compose. Si no hacemos esto, al levantar la aplicación obtendermos un error  500.
+   Para renombrar el archiv .env.example se debe ejecutar el siguiente comando en la carpeta raíz del repositorio:
+      ```bash
+      mv env.example .env
 
+2. **Construir y levantar los contenedores**
+   Una vez realizados estos cambios, ya podemos construir y levantar los contenedores tanto de base de datos como el de la aplicación con el siguiente comando:
    ```bash
    docker-compose up --build -d
 
