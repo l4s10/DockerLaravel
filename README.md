@@ -47,6 +47,9 @@ El proyecto ocupa el siguiente entorno de desarrollo
    juridico@sia.cl      -> 12345678
    funcionario@sia.cl   -> 12345678
    funcionario2@sia.cl  -> 12345678
+   
+## Recomendaciones
+   1. En caso de que no se pueda visualizar el archivo .env.example, lo que se debe hacer es habilitar la visualización de archivos ocultos (en sistemas Linux).
 
 ## 📜 Licencia
 
