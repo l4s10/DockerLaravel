@@ -55,3 +55,23 @@ El proyecto ocupa el siguiente entorno de desarrollo
 
 MIT
 
+
+
+## 🚀 Instrucciones para Despliegue en Producción (leer documento adjunto)
+
+Este capítulo proporciona un resumen de los pasos para desplegar la aplicación en un entorno de producción. Para comandos detallados y explicaciones completas, consulta el documento adjunto en el repositorio.
+
+### Consideraciones Previas
+Breve descripción sobre las consideraciones iniciales como la elección de la IP y los puertos.
+
+### Instalación de Dependencias y Servicios
+Resumen de la instalación y configuración de servicios esenciales como PHP, Apache2, Composer y MariaDB.
+
+### Configuración del Proyecto Laravel
+Descripción de los pasos para configurar Laravel, incluyendo la descarga del proyecto, instalación de dependencias, y configuración de VirtualHost y base de datos.
+
+### Configuración Adicional de MariaDB
+Descripción de cómo ajustar la configuración por defecto de MariaDB, incluyendo cambios en la dirección IP y el puerto.
+
+### Notas Adicionales
+Consejos finales y recomendaciones para asegurar un despliegue exitoso.
