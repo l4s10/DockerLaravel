@@ -249,7 +249,7 @@ Entonces, debe cambiarlo de la siguiente forma:
 Para finalizar, lo único que queda por hacer es generar la llave de encriptación de la aplicación de Laravel.
 Para ello navegue al directorio raíz del proyecto con el comando:
       ```bash
-      cd /DIRECTORIO_RAIZ_PROYECTO
+         cd /DIRECTORIO_RAIZ_PROYECTO
       ```
 Finalmente, genere la llave de encriptación con el comando:
       ```bash
