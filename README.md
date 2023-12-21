@@ -302,7 +302,7 @@ Para finalizar, lo único que queda por hacer es generar la llave de encriptaci�
 
 1. Para ello navegue al directorio raíz del proyecto con el comando:
       ```bash
-         cd /DIRECTORIO_RAIZ_PROYECTO
+      cd /DIRECTORIO_RAIZ_PROYECTO
 
 2. Finalmente, genere la llave de encriptación con el comando:
       ```bash
