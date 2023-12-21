@@ -1,3 +1,9 @@
+## 👨‍💻👩‍💻 Integrantes
+1. Francisco Muñoz
+2. Jorge Valdivia
+3. Ricardo Flores
+4. Benjamin Barriga
+
 ## 👨‍💻👩‍💻 Entorno utilizado
 El proyecto ocupa el siguiente entorno de desarrollo
 1. **PHP 8.2**
