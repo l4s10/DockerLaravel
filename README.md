@@ -62,74 +62,76 @@ MIT
 A continuación, se detallan las instrucciones y comandos necesarios para realizar una instalación exitosa del Sistema Integrado de Administración (SIA). Se recomienda trabajar con un sistema operativo Debian 12 para garantizar la compatibilidad.
 
 ### Sistema Operativo
-Se recomienda trabajar con un sistema operativo Debian 12 para garantizar la compatibilidad del proyecto. Acceda como superusuario ejecutando el siguiente comando:
+1. Se recomienda trabajar con un sistema operativo Debian 12 para garantizar la compatibilidad del proyecto. Acceda como superusuario ejecutando el siguiente comando:
       ```bash
       su -
 
 ### Instalación de Librerías y Dependencias
-instale las librerías básicas necesarias con el siguiente comando:
+1. Instale las librerías básicas necesarias con el siguiente comando:
       ```bash
       sudo apt-get update && sudo apt-get install -y curl git unzip libzip-dev libicu-dev libonig-dev libpng-dev libjpeg-dev libfreetype6-dev libxml2-dev
 
 ### PHP y Extensiones
-Para instalar PHP con las respectivas extensiones necesarias, ejecute el siguiente comando:
+1. Para instalar PHP con las respectivas extensiones necesarias, ejecute el siguiente comando:
       ```bash
       sudo apt-get install -y php libapache2-mod-php php-dom php-xml php-curl php-mysql
 
 ### Servidor web
-Se recomienda la instalación del servidor web Apache2 para garantizar la compatibilidad. Sin embargo, también se puede utilizar otro servicio web. Para instalar Apache2, utilice el siguiente comando:
+1. Se recomienda la instalación del servidor web Apache2 para garantizar la compatibilidad. Sin embargo, también se puede utilizar otro servicio web. Para instalar Apache2, utilice el siguiente comando:
       ```bash
       sudo apt-get install apache2 -y
 
 ### Configuración del servidor web
-Si ha transparentado un puerto, asegúrese de cambiarlo en el archivo de configuración de su servidor web usando un editor de texto con el comando correspondiente:
+1. Si ha transparentado un puerto, asegúrese de cambiarlo en el archivo de configuración de su servidor web usando un editor de texto con el comando correspondiente:
       ```bash
       $EDITOR_TEXTO /etc/SERVICIO_WEB/ARCHIVO_CONFIGURACION_PUERTO”
-En el caso de utilizar Apache2 (recomendado) con el editor de texto nano, edite el archivo con el comando:
+2. En el caso de utilizar Apache2 (recomendado) con el editor de texto nano, edite el archivo con el comando:
       ```bash
       nano /etc/apache2/ports.conf
-Si utiliza otra IP, diríjase al archivo de configuración de su servicio web y realice el procedimiento similar.
+3. Si utiliza otra IP, diríjase al archivo de configuración de su servicio web y realice el procedimiento similar.
       ```bash
       $ EDITOR_TEXTO /etc/SERVICIO_WEB/ARCHIVO_CONFIGURACION_SERVICIO
-En el caso de apache2 usando el editor nano (recomendado):
+4. En el caso de apache2 usando el editor nano (recomendado):
       ```bash
       nano /etc/apache2/apache2.conf
 Esto hará que el servicio web utilice la IP designada en su máquina. Luego guarde el archivo y recargue el servicio.
-En el caso de usar apache2, habilite el módulo “rewrite” de apache con el comando:
+5. En el caso de usar apache2, habilite el módulo “rewrite” de apache con el comando:
       ```bash
       a2enmod rewrite”
-y reinicie el servicio con “$ service apache2 restart”.
+6. reinicie el servicio con:
+      ```bash
+      service apache2 restart
 En caso de usar otro servicio web, busque el comando equivalente.
 Si ha seguido todos los pasos correctamente, asegúrese que pueda visualizar la página por defecto en ‘http://IP_MAQUINA:PUERTO_TRANSPARENTADO/’.
 
 ### Composer
-Para instalar Composer, ejecute el siguiente comando como superusuario:
+1. Para instalar Composer, ejecute el siguiente comando como superusuario:
       ```bash
       curl -sSL https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ### Proyecto
 En esta sección, se muestra cómo descargar y configurar el proyecto.
 #### Descarga del proyecto
-Clone el repositorio desde GIT en el directorio de su elección:
+1. Clone el repositorio desde GIT en el directorio de su elección:
       ```bash
       git clone https://github.com/l4s10/SIA2_SII.git
 #### Instalacion de dependencias del proyecto
-Una vez descargado el proyecto, ingrese al directorio con el comando:
+1. Una vez descargado el proyecto, ingrese al directorio con el comando:
       ```bash
       cd /DIRECTORIO_RAIZ_PROYECTO
-Luego ejecute:
+2. Luego ejecute:
       ```bash
       composer install
 ### Configuraciones
 #### Permisos
-En sistemas GNU/Linux, Laravel puede presentar conflictos con permisos de directorios. Corrija esto ejecutando el comando:
+1. En sistemas GNU/Linux, Laravel puede presentar conflictos con permisos de directorios. Corrija esto ejecutando el comando:
       ```bash
       sudo chown -R www-data:www-data /DIRECTORIO_PROYECTO/storage DIRECTORIO_PRYECTO/bootstrap/cache
 #### Hosting Compartido (VirtualHost)
-Ubíquese en la carpeta de configuración del hosting compartido con el comando:
+1. Ubíquese en la carpeta de configuración del hosting compartido con el comando:
       ```bash
       cd /etc/SERVICIO_WEB/DIRECTORIO_HOSTING_COMPARTIDO
-Cree un archivo de configuración para el proyecto, respetando las configuraciones del servidor web y apuntando al directorio raíz. En el caso de utilizar Apache2, debe tener el siguiente formato:
+2. Cree un archivo de configuración para el proyecto, respetando las configuraciones del servidor web y apuntando al directorio raíz. En el caso de utilizar Apache2, debe tener el siguiente formato:
       ```bash
       <VirtualHost *:PUERTO_TRANSPARENTADO>
          ServerAdmin webmaster@IP_MAQUINA
@@ -143,14 +145,14 @@ Cree un archivo de configuración para el proyecto, respetando las configuracion
          ErrorLog ${APACHE_LOG_DIR}/error.log
          CustomLog ${APACHE_LOG_DIR}/access.log combined
       </VirtualHost>
-Luego, habilite el archivo de configuración creado, en el caso de apache puede hacerlo con siguiente comando:
+3. Luego, habilite el archivo de configuración creado, en el caso de apache puede hacerlo con siguiente comando:
       ```bash
       sudo a2ensite NOMBRE_ARCHIVO.conf
-Después, deshabilite el sitio por defecto del servidor web y reinicie el servicio con los siguientes comandos:
+4. Después, deshabilite el sitio por defecto del servidor web y reinicie el servicio con los siguientes comandos:
       ```bash
       sudo a2dissite 000-default.conf
       sudo service apache2 restart
-No olvide verificar que la sintaxis de su configuración sea correcta con:
+5. No olvide verificar que la sintaxis de su configuración sea correcta con:
       ```bash
       sudo apache2ctl configtest
 En caso de utilizar otro servidor web, busque los comandos equivalentes segun sea el caso.
@@ -158,10 +160,10 @@ Si al visitar el enlace http://IP_MAQUINA:PUERTO_CONFIGURADO aparece una página
 ### MariaDB (MySQL)
 Si ya posee un servidor de base de datos, puede omitir esta sección. A continuación, se detallan los pasos para instalar y configurar MariaDB.
 #### Instalacion
-Como superusuario, ejecute el siguiente comando para instalar MariaDB:
+1. Como superusuario, ejecute el siguiente comando para instalar MariaDB:
       ```bash
       sudo apt-get install mariadb-server -y
-Una vez instalado, ejecute la instalacion segura con:
+2. Una vez instalado, ejecute la instalacion segura con:
       ```bash
       sudo mysql_secure_installation
 Se le solicitará la contraseña de su usuario root. Ingrese la contraseña.
@@ -173,38 +175,38 @@ En “Remove test databases and access to it”, ingrese “y”.
 Finalmente, recargue la tabla de privilegios cuando la terminal diga “Reload privilege tables now?”, ingrese “y”.
 Recibirá un mensaje indicando que MariaDB se ha instalado correctamente. En caso de problemas, puede volver a ejecutar el comando anterior y cambiar los ajustes.
 #### Configuracion
-Para configurar la base de datos, primero necesitamos ingresar como root a MariaDB con el siguiente comando:
+1. Para configurar la base de datos, primero necesitamos ingresar como root a MariaDB con el siguiente comando:
       ```bash
       mariadb -u root -p
-Una vez dentro, cree una nueva base de datos con el comando:
+2. Una vez dentro, cree una nueva base de datos con el comando:
       ```bash
       CREATE DATABASE NOMBRE_BDD;
-Si todo funciona correctamente, podra visualizar la nueva base de datos con el comando:
+3. Si todo funciona correctamente, podra visualizar la nueva base de datos con el comando:
       ```bash
       SHOW DATABASES;
-Luego, configure un usuario para la base de datos. Ejecute el siguiente comando dentro del motor:
+4. Luego, configure un usuario para la base de datos. Ejecute el siguiente comando dentro del motor:
       ```bash
       CREATE USER ‘nombre_usuario’@’IP’ IDENTIFIED BY ‘contraseña’;
-Despues, otorguele los permisos necesarios al usuario recien creado con el comando:
+5. Despues, otorguele los permisos necesarios al usuario recien creado con el comando:
       ```bash
       GRANT ALL PRIVILEGES ON NOMBRE_BDD.* TO ‘usuario_creado’@’IP’;
-Una vez otorgados los permisos, refresque la tabla de privilegios con:
+6. Una vez otorgados los permisos, refresque la tabla de privilegios con:
       ```bash
       FLUSH PRIVILEGES;
-Marque la base de datos como "En uso":
+6. Marque la base de datos como "En uso":
       ```bash
       USE NOMBRE_BDD;
-Y salga del motor:
+7. Y salga del motor:
       ```bash
       exit
 #### Respaldo de la base de datos
-Si el repositorio incluye un archivo "respaldo.sql", puede importarlo con el siguiente comando:
+1. Si el repositorio incluye un archivo "respaldo.sql", puede importarlo con el siguiente comando:
       ```bash
       mariadb -u root -p NOMBRE_BDD < DIRECTORIO_ARCHIVO.SQL
 Por ejemplo:
       ```bash
       “mariadb -u root -p sia2 < /home/taller/DockerLaravel/respaldo.sql”
-Verifique la poblacion de la base de datos con el comando:
+2. Verifique la poblacion de la base de datos con el comando:
       ```bash
       SHOW TABLES;
 ### Configuracion del entorno de produccion
@@ -231,7 +233,7 @@ Dentro del archivo ".env" usted vera algo similar a esto:
       DB_DATABASE=laravel
       DB_USERNAME=laraveluser
       DB_PASSWORD=yourpassword
-Entonces, debe cambiarlo de la siguiente forma:
+4. Entonces, debe cambiarlo de la siguiente forma:
       ```bash
       APP_NAME=Laravel
       APP_ENV=production
@@ -247,11 +249,10 @@ Entonces, debe cambiarlo de la siguiente forma:
       DB_PASSWORD=CREDENCIAL_USUARIO_BDD
 ### Uso y generacion de la llave de encriptacion en Laravel (APP_KEY)
 Para finalizar, lo único que queda por hacer es generar la llave de encriptación de la aplicación de Laravel.
-Para ello navegue al directorio raíz del proyecto con el comando:
+1. Para ello navegue al directorio raíz del proyecto con el comando:
       ```bash
          cd /DIRECTORIO_RAIZ_PROYECTO
-      ```
-Finalmente, genere la llave de encriptación con el comando:
+2. Finalmente, genere la llave de encriptación con el comando:
       ```bash
       php artisan key:generate
 Una vez hecho esto visite su sitio configurado previamente en un navegador:
