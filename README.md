@@ -250,6 +250,7 @@ Para finalizar, lo único que queda por hacer es generar la llave de encriptaci�
 Para ello navegue al directorio raíz del proyecto con el comando:
       ```bash
       cd /DIRECTORIO_RAIZ_PROYECTO
+      ```
 Finalmente, genere la llave de encriptación con el comando:
       ```bash
       php artisan key:generate
